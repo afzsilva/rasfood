@@ -29,4 +29,12 @@ public class Categoria {
     public void setCategoria(String categoria) {
         this.categoria = categoria;
     }
+
+    @Override
+    public String toString() {
+        return "Categoria{" +
+                "id=" + id +
+                ", categoria='" + categoria + '\'' +
+                '}';
+    }
 }
