@@ -1,6 +1,6 @@
 package br.com.rasmoo.restaurante.dao;
 
-import br.com.rasmoo.restaurante.entity.Prato;
+import br.com.rasmoo.restaurante.entity.Cardapio;
 
 import javax.persistence.EntityManager;
 
@@ -11,28 +11,28 @@ import javax.persistence.EntityManager;
  * Update
  * Delete
  */
-public class PratoDao {
+public class CardapioDao {
 
     private EntityManager entityManager;
 
-    public PratoDao(EntityManager entityManager) {
+    public CardapioDao(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
     
-    public void cadastrar(Prato prato){
+    public void cadastrar(Cardapio prato){
         entityManager.persist(prato);
         System.out.println("Entidade cadastrada >>>"+prato);
     }
 
-    public Prato consultar(final Integer id){
-        return this.entityManager.find(Prato.class,id);
+    public Cardapio consultar(final Integer id){
+        return this.entityManager.find(Cardapio.class,id);
     }
 
-    public void atualisar(final Prato prato){
+    public void atualisar(final Cardapio prato){
         this.entityManager.merge(prato);
     }
 
-    public void excluir(final Prato prato){
+    public void excluir(final Cardapio prato){
         this.entityManager.remove(prato);
     }
 
