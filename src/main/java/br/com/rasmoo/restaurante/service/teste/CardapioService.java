@@ -33,10 +33,12 @@ public class CardapioService {
         cardapioDao.cadastrar(salmao);//insert
         entityManager.flush();
 
-        System.out.println("Prato consultado: "+ cardapioDao.consultar(1));
+        //System.out.println("Prato consultado: "+ cardapioDao.consultar(1));
 
         //cardapioDao.excluir(salmao);//delete
-        System.out.println("Prato consultado: "+ cardapioDao.consultar(2));//null
+        //System.out.println("Prato consultado: "+ cardapioDao.consultar(2));//null
+
+        cardapioDao.consultarTodos().forEach(e-> System.out.println("Retornado : "+e));
 
         //DETACHED
         entityManager.clear();
