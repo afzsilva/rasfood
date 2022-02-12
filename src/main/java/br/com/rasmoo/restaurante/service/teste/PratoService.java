@@ -30,7 +30,12 @@ public class PratoService {
 
         //MANAGED
         pratoDao.cadastrar(risoto);
+        entityManager.flush();
+
         pratoDao.cadastrar(salmao);//insert
+        entityManager.flush();
+
+
 
         System.out.println("Prato consultado: "+pratoDao.consultar(2));
 
@@ -38,10 +43,13 @@ public class PratoService {
         System.out.println("Prato consultado: "+pratoDao.consultar(2));//null
 
 
-        entityManager.getTransaction().commit();
-
         //DETACHED
-        entityManager.close();
+        entityManager.clear();
+
+        //apos estatus DETACHED
+        salmao.setValor(BigDecimal.valueOf(75.50));
+        pratoDao.atualisar(salmao);
+        System.out.println("Prato consultado foi: "+pratoDao.consultar(2));//null
 
     }//main
 }
