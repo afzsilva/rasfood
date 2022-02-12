@@ -4,12 +4,11 @@ import br.com.rasmoo.restaurante.dao.CardapioDao;
 import br.com.rasmoo.restaurante.entity.Cardapio;
 import br.com.rasmoo.restaurante.util.JPAUtil;
 
-import javax.persistence.EntityManager;
+import javax.persistence.*;
 import java.math.BigDecimal;
 
 public class CardapioService {
     public static void main(String[] args) {
-
         //TRANSIENT
         Cardapio risoto = new Cardapio();
         risoto.setNome("Risoto de frutos do mar");
@@ -23,7 +22,6 @@ public class CardapioService {
         salmao.setDisponivel(true);
         salmao.setValor(BigDecimal.valueOf(60.00));
 
-
         EntityManager entityManager = JPAUtil.getEntityManageRasFood();
         CardapioDao cardapioDao = new CardapioDao(entityManager);//instancia do dao
         entityManager.getTransaction().begin();
@@ -35,21 +33,18 @@ public class CardapioService {
         cardapioDao.cadastrar(salmao);//insert
         entityManager.flush();
 
+        System.out.println("Prato consultado: "+ cardapioDao.consultar(1));
 
-
-        System.out.println("Prato consultado: "+ cardapioDao.consultar(2));
-
-        cardapioDao.excluir(salmao);//delete
+        //cardapioDao.excluir(salmao);//delete
         System.out.println("Prato consultado: "+ cardapioDao.consultar(2));//null
-
 
         //DETACHED
         entityManager.clear();
 
         //apos estatus DETACHED
-        salmao.setValor(BigDecimal.valueOf(75.50));
+        /*salmao.setValor(BigDecimal.valueOf(75.50));
         cardapioDao.atualisar(salmao);
         System.out.println("Prato consultado foi: "+ cardapioDao.consultar(2));//null
-
+*/
     }//main
 }

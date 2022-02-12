@@ -16,7 +16,8 @@ public class Cardapio {
     private String descricao;
     private Boolean disponivel;
     private BigDecimal valor;
-    @Embedded
+
+    @ManyToOne
     private Categoria categoria;
 
     @Column(name = "data_de_registro")
