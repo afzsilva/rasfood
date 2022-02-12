@@ -1,5 +1,6 @@
 package br.com.rasmoo.restaurante.service.teste;
 
+import br.com.rasmoo.restaurante.dao.PratoDao;
 import br.com.rasmoo.restaurante.entity.Prato;
 import br.com.rasmoo.restaurante.util.JPAUtil;
 
@@ -20,10 +21,11 @@ public class PratoService {
 
 
         EntityManager entityManager = JPAUtil.getEntityManageRasFood();
+        PratoDao pratoDao = new PratoDao(entityManager);//instancia do dao
         entityManager.getTransaction().begin();
 
         //MANAGED
-        entityManager.persist(risoto);
+        pratoDao.cadastrar(risoto);//metodo do dao
         entityManager.getTransaction().commit();
 
         //DETACHED
